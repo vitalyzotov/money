@@ -140,7 +140,7 @@
 
     <repositories>
         <repository>
-            <id>github-repo</id>
+            <id>github-vzotov</id>
             <name>GitHub vitalyzotov Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/vitalyzotov/maven</url>
             <releases>
