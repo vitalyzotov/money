@@ -140,9 +140,9 @@
 
     <repositories>
         <repository>
-            <id>github</id>
+            <id>github-repo</id>
             <name>GitHub vitalyzotov Apache Maven Packages</name>
-            <url>https://vitalyzotov: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@maven.pkg.github.com/vitalyzotov/maven</url>
+            <url>https://vitalyzotov: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@maven.pkg.github.com/vitalyzotov/maven</url>
             <releases>
                 <enabled>true</enabled>
                 <updatePolicy>daily</updatePolicy>
