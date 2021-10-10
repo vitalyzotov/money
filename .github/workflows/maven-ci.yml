@@ -21,7 +21,7 @@ jobs:
           java-version: 8
           distribution: 'adopt'
           cache: maven
-          server-id: github-repo # Value of the distributionManagement/repository/id field of the pom.xml
+          server-id: github-vzotov # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       - name: Build with Maven
