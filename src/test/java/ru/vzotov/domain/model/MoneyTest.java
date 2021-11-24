@@ -110,4 +110,10 @@ public class MoneyTest {
         assertThat(m).isEqualTo(Money.rubles(0.95d));
     }
 
+    @Test
+    public void negate() {
+        Money m = Money.kopecks(12345L).negate();
+        assertThat(m).isEqualTo(Money.rubles(-123.45d));
+    }
+
 }

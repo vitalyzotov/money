@@ -92,6 +92,10 @@ public class Money implements Comparable<Money>, ValueObject<Money> {
         return newMoney(Math.round(amount * multiplier));
     }
 
+    public Money negate() {
+        return newMoney(-amount);
+    }
+
     /**
      * Round value up to 10^n
      *
