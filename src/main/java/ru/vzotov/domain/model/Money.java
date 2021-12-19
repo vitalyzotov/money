@@ -97,6 +97,14 @@ public class Money implements Comparable<Money>, ValueObject<Money> {
     }
 
     /**
+     * Return absolute value of this money value
+     * @return the absolute value of this money value
+     */
+    public Money abs() {
+        return newMoney(Math.abs(amount));
+    }
+
+    /**
      * Round value up to 10^n
      *
      * @param n power of 10 for rounding up. 3 - up to 1000, 2 - up to 100, 1 - up to 10.
