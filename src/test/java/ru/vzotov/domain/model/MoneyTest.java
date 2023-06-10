@@ -1,36 +1,29 @@
 package ru.vzotov.domain.model;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Currency;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.fail;
 
 public class MoneyTest {
 
     @Test
     public void testConstructor() {
-        try {
-            new Money(null, Currency.getInstance("RUR"));
-            fail("Should not accept null arguments");
-        } catch (IllegalArgumentException expected) {
-        }
-
-        try {
-            new Money(BigDecimal.valueOf(10), null);
-            fail("Should not accept null arguments");
-        } catch (IllegalArgumentException expected) {
-        }
+        assertThatThrownBy(() -> new Money(null, Currency.getInstance("RUR")),
+                "Should not accept null arguments").isInstanceOf(NullPointerException.class);
+        assertThatThrownBy(() -> new Money(BigDecimal.valueOf(10), null),
+                "Should not accept null arguments").isInstanceOf(NullPointerException.class);
     }
 
     @Test
     public void testCompareDifferentCurrencies() {
         assertThatThrownBy(() -> {
             // Should not allow to compare different currencies
+            //noinspection ResultOfMethodCallIgnored
             Money.rubles(10.0d).compareTo(Money.dollars(10.0d));
         }).isInstanceOf(IllegalArgumentException.class);
     }

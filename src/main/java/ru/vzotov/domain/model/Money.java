@@ -1,6 +1,6 @@
 package ru.vzotov.domain.model;
 
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 import ru.vzotov.ddd.shared.ValueObject;
 
 import java.math.BigDecimal;
@@ -19,7 +19,7 @@ public class Money implements Comparable<Money>, ValueObject<Money> {
     private Currency currency;
 
     protected Money() {
-        // for Hibernate
+        // for ORM
     }
 
     public Money(double amount, Currency currency) {
@@ -131,9 +131,7 @@ public class Money implements Comparable<Money>, ValueObject<Money> {
 
     public int compareTo(Money other) {
         assertSameCurrencyAs(other);
-        if (amount < other.amount) return -1;
-        else if (amount == other.amount) return 0;
-        else return 1;
+        return Long.compare(amount, other.amount);
     }
 
     public boolean greaterThan(Money other) {
