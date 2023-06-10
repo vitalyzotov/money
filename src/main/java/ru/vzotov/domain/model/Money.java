@@ -131,9 +131,7 @@ public class Money implements Comparable<Money>, ValueObject<Money> {
 
     public int compareTo(Money other) {
         assertSameCurrencyAs(other);
-        if (amount < other.amount) return -1;
-        else if (amount == other.amount) return 0;
-        else return 1;
+        return Long.compare(amount, other.amount);
     }
 
     public boolean greaterThan(Money other) {

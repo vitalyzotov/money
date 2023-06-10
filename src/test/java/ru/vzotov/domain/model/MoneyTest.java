@@ -23,6 +23,7 @@ public class MoneyTest {
     public void testCompareDifferentCurrencies() {
         assertThatThrownBy(() -> {
             // Should not allow to compare different currencies
+            //noinspection ResultOfMethodCallIgnored
             Money.rubles(10.0d).compareTo(Money.dollars(10.0d));
         }).isInstanceOf(IllegalArgumentException.class);
     }
