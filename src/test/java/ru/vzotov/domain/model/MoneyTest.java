@@ -109,4 +109,24 @@ public class MoneyTest {
         assertThat(m).isEqualTo(Money.rubles(-123.45d));
     }
 
+    @Test
+    public void withRawAmount() {
+        Money m1 = Money.kopecks(54321L);
+        Money m2 = Money.kopecks(12345L);
+        assertThat(m1.withRawAmount(12345L)).isEqualTo(m2);
+    }
+
+    @Test
+    public void withDoubleAmount() {
+        Money m1 = Money.kopecks(54321L);
+        Money m2 = Money.kopecks(12345L);
+        assertThat(m1.withAmount(123.45)).isEqualTo(m2);
+    }
+
+    @Test
+    public void withDecimalAmount() {
+        Money m1 = Money.kopecks(54321L);
+        Money m2 = Money.kopecks(12345L);
+        assertThat(m1.withAmount(BigDecimal.valueOf(123.45))).isEqualTo(m2);
+    }
 }

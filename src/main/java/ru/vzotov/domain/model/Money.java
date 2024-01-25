@@ -44,7 +44,7 @@ public class Money implements Comparable<Money>, ValueObject<Money> {
         Validate.isTrue(!RUB.equals(currency), "Wrong currency: ", currency); // we use RUR only
 
         this.currency = currency;
-        this.amount = amount.longValue();
+        this.amount = amount.scaleByPowerOfTen(currency.getDefaultFractionDigits()).longValue();
     }
 
     public static Money dollars(double amount) {
@@ -66,6 +66,18 @@ public class Money implements Comparable<Money>, ValueObject<Money> {
 
     private static int centFactorOfCurrency(Currency currency) {
         return cents[currency.getDefaultFractionDigits()];
+    }
+
+    public Money withRawAmount(long rawAmount) {
+        return ofRaw(rawAmount, currency());
+    }
+
+    public Money withAmount(double amount) {
+        return new Money(amount, currency());
+    }
+
+    public Money withAmount(BigDecimal amount) {
+        return new Money(amount, currency());
     }
 
     public BigDecimal amount() {
@@ -98,6 +110,7 @@ public class Money implements Comparable<Money>, ValueObject<Money> {
 
     /**
      * Return absolute value of this money value
+     *
      * @return the absolute value of this money value
      */
     public Money abs() {
@@ -149,6 +162,13 @@ public class Money implements Comparable<Money>, ValueObject<Money> {
         money.currency = this.currency;
         money.amount = rawAmount;
         return money;
+    }
+
+    public static Money parse(String s) {
+        final String[] parts = s.trim().split("\\s");
+        final double value = Double.parseDouble(parts[0]);
+        final Currency currency = Currency.getInstance(parts[1]);
+        return new Money(value, currency);
     }
 
     /**
